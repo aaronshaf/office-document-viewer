@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Archive from './Archive';
 
 function Dashboard() {
-  let file = new URLSearchParams(window.location.search).get('file') || '';
+  const file = new URLSearchParams(window.location.search).get('file') || '';
 
   if (file) {
     return <Archive file={file} />;
@@ -10,8 +10,23 @@ function Dashboard() {
     return (
       <div>
         <h1>DOCX Viewer</h1>
-        <div>
+
+        <div style={{ marginBottom: '1em' }}>
           <em>Dreaming big. Starting small.</em>
+        </div>
+
+        <div style={{ marginBottom: '1em' }}>
+          <h2>Load document</h2>
+          <form method="get">
+            <input name="file" placeholder="URL" type="url" />
+            <button type="submit" style={{ marginLeft: '3px' }}>
+              Load
+            </button>
+          </form>
+        </div>
+
+        <div>
+          <h2>Example documents</h2>
           <ul>
             <li>
               <a href="/?file=/test-documents/test1.docx">test1.docx</a>
