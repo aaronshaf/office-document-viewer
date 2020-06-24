@@ -25,7 +25,7 @@ function Dashboard() {
           </form>
         </div>
 
-        <div>
+        <div style={{ marginBottom: '1em' }}>
           <h2>Example documents</h2>
           <ul>
             <li>
@@ -56,6 +56,26 @@ function Dashboard() {
                 sample4.docx
               </a>
             </li>
+            <li>
+              <a href="/?file=https://www.coolfreecv.com/doc/resume_009.docx">
+                resume_009.docx
+              </a>
+            </li>
+            {/* <li>
+              <a href="/?file=https://www.coolfreecv.com/doc/resume_010.docx">
+                resume_010.docx
+              </a>
+            </li> */}
+          </ul>
+        </div>
+
+        <div style={{ marginBottom: '1em' }}>
+          <h2>Next up</h2>
+          <ul>
+            <li>Pagination</li>
+            <li>Borders</li>
+            <li>Fonts</li>
+            <li>Text alignment</li>
           </ul>
         </div>
 
