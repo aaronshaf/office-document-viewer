@@ -55,7 +55,7 @@ function Archive() {
     <div className="Archive">
       <h1>DOCX Viewer</h1>
       <div>
-        <em>We're just getting started.</em>
+        <em>Dreaming big. Starting small.</em>
       </div>
 
       <div className="Document">
