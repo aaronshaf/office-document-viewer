@@ -6,6 +6,7 @@ import './Document.css';
 const MANIFEST_FILENAME = 'word/document.xml';
 
 function Archive() {
+  const [isLoading, setIsLoading] = useState(true);
   const [entries, setEntries] = useState([]);
   const [, setEntryMap] = useState(new Map());
   const [nodes, setTextNodes] = useState([]);
@@ -32,7 +33,6 @@ function Archive() {
         }
         if (xml != null) {
           const doc = parseXml(xml);
-          window.test1 = doc;
           const childNodes = Array.from(doc.querySelector('body').childNodes);
 
           let nodes = [];
@@ -57,6 +57,7 @@ function Archive() {
       file || '/test-documents/test1.docx'
     );
     getEntriesPromise.then((entries) => {
+      setIsLoading(false);
       setEntries(entries);
     });
   }, []);
@@ -94,12 +95,14 @@ function Archive() {
 
       <div className="Document">{nodes}</div>
 
-      <details>
-        <summary>Archive contents</summary>
-        {entries.map((entry) => (
-          <div key={entry.filename}>{entry.filename}</div>
-        ))}
-      </details>
+      {isLoading === false && (
+        <details>
+          <summary>Archive contents</summary>
+          {entries.map((entry) => (
+            <div key={entry.filename}>{entry.filename}</div>
+          ))}
+        </details>
+      )}
     </div>
   );
 }

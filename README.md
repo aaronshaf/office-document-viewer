@@ -1,6 +1,8 @@
-DOCX viewer.
+DOCX web viewer.
 
-Dreaming big.
+Dreaming big. Starting small.
+
+[Examples](https://docx-viewer.netlify.app/)
 
 ## See also
 
