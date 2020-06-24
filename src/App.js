@@ -1,10 +1,10 @@
 import React from 'react';
-import Archive from './Archive.js';
+import Dashboard from './Dashboard.js';
 
 function App() {
   return (
     <div className="App">
-      <Archive />
+      <Dashboard />
     </div>
   );
 }

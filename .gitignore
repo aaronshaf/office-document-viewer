@@ -24,4 +24,5 @@ yarn-error.log*
 *.xml
 ~*.*
 NOTES.md
+TODO.md
 unpacked
