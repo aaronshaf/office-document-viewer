@@ -1,11 +1,28 @@
 import React from 'react';
 import OpenOfficeNode from './OpenOfficeNode';
+import { relationshipsState } from './atoms';
+import { useRecoilValue } from 'recoil';
 
 function Hyperlink({ node }) {
+  const relationships = useRecoilValue(relationshipsState);
+
   const children = Array.from(node.childNodes).map((node, i) => (
     <OpenOfficeNode key={i} node={node} />
   ));
-  return <a href="#wip">{children}</a>;
+
+  const relationshipId = node.getAttribute('r:id');
+  return (
+    <a
+      href={relationships[relationshipId]?.getAttribute('Target') || '#_'}
+      target={
+        relationships[relationshipId]?.getAttribute('TargetMode') === 'External'
+          ? '_blank'
+          : ''
+      }
+    >
+      {children}
+    </a>
+  );
 }
 
 export default Hyperlink;
