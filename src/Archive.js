@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getEntriesFromXHR, getTextFromEntry, parseXml } from './utils';
+import Paragraph from './Paragraph';
 import './Document.css';
 
 const MANIFEST_FILENAME = 'word/document.xml';
@@ -7,7 +8,7 @@ const MANIFEST_FILENAME = 'word/document.xml';
 function Archive() {
   const [entries, setEntries] = useState([]);
   const [, setEntryMap] = useState(new Map());
-  const [textNodes, setTextNodes] = useState([]);
+  const [nodes, setTextNodes] = useState([]);
 
   useEffect(() => {
     const entryMap = new Map();
@@ -30,11 +31,20 @@ function Archive() {
           // this.setState({ errorLoading: true });
         }
         if (xml != null) {
-          const manifest = parseXml(xml);
-          window.test1 = manifest;
-          const nodes = Array.prototype.slice.call(
-            manifest.querySelectorAll('t')
-          );
+          const doc = parseXml(xml);
+          window.test1 = doc;
+          const childNodes = Array.from(doc.querySelector('body').childNodes);
+          let nodes = [];
+          for (let childNode of childNodes) {
+            switch (childNode.tagName) {
+              case 'w:p':
+                nodes.push(<Paragraph key={nodes.length} node={childNode} />);
+                break;
+              default:
+                break;
+            }
+            console.log(childNode.tagName);
+          }
 
           setTextNodes(nodes);
           // this.loadResources(xml);
@@ -88,9 +98,7 @@ function Archive() {
         </ul>
       </div>
 
-      <div className="Document">
-        {textNodes.map((node) => node.textContent)}
-      </div>
+      <div className="Document">{nodes}</div>
 
       <details>
         <summary>test1.docx reference</summary>
