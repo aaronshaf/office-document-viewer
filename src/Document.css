@@ -1,3 +1,7 @@
+.Showcase {
+  display: flex;
+}
+
 .Document {
   padding: 24px;
   background-color: white;

@@ -53,13 +53,26 @@ function Archive() {
   }, []);
   return (
     <div className="Archive">
+      <h1>DOCX Viewer</h1>
+      <div>
+        <em>We're just getting started.</em>
+      </div>
+
       <div className="Document">
         {textNodes.map((node) => node.textContent)}
       </div>
 
-      {entries.map((entry) => (
-        <div key={entry.filename}>{entry.filename}</div>
-      ))}
+      <details>
+        <summary>test1.docx reference</summary>
+        <img src="https://i.imgur.com/5x1pL1l.png" />
+      </details>
+
+      <details>
+        <summary>test1.docx contents</summary>
+        {entries.map((entry) => (
+          <div key={entry.filename}>{entry.filename}</div>
+        ))}
+      </details>
     </div>
   );
 }
