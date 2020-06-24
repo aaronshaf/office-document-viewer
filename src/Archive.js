@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getEntriesFromXHR, getTextFromEntry, parseXml } from './utils';
 import OpenOfficeNode from './OpenOfficeNode';
-import { relationshipsState } from './atoms';
+import { relationshipsState, entryMapState } from './atoms';
 import { useRecoilState } from 'recoil';
 import './Document.css';
 
@@ -11,7 +11,7 @@ const RELATIONSHIPS_FILENAME = 'word/_rels/document.xml.rels';
 function Archive() {
   const [isLoading, setIsLoading] = useState(true);
   const [entries, setEntries] = useState([]);
-  const [, setEntryMap] = useState(new Map());
+  const [, setEntryMap] = useRecoilState(entryMapState);
   const [nodes, setTextNodes] = useState([]);
   const [, setRelationships] = useRecoilState(relationshipsState);
 

@@ -9,3 +9,8 @@ export const relationshipsState = atom({
   key: 'relationshipsState',
   default: {},
 });
+
+export const entryMapState = atom({
+  key: 'entryMap',
+  default: new Map(),
+});

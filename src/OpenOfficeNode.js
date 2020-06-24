@@ -2,6 +2,7 @@ import React from 'react';
 import Hyperlink from './Hyperlink';
 import Paragraph from './Paragraph';
 import TextRun from './TextRun';
+import Drawing from './Drawing';
 
 function OpenOfficeNode({ node }) {
   let nodes = [];
@@ -13,6 +14,8 @@ function OpenOfficeNode({ node }) {
       return <TextRun key={nodes.length} node={node} />;
     case 'w:hyperlink':
       return <Hyperlink key={nodes.length} node={node} />;
+    case 'w:drawing':
+      return <Drawing key={nodes.length} node={node} />;
     case 'w:t':
       return <>{node.textContent}</>;
     default:
