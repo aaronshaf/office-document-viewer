@@ -1,7 +1,7 @@
 import React from 'react';
 import OpenOfficeNode from './OpenOfficeNode';
 
-const stylistic = (node) => ['w:rPr'].includes(node.tagName);
+const isStylistic = (node) => ['w:rPr'].includes(node.tagName);
 
 const extractStyles = (node) => {
   const styles = {};
@@ -12,6 +12,12 @@ const extractStyles = (node) => {
         break;
       case 'w:b':
         styles.fontWeight = 'bold';
+        break;
+      case 'w:color':
+        styles.color = `#${node.getAttribute('w:val')}`;
+        break;
+      case 'w:shd':
+        styles.backgroundColor = `#${node.getAttribute('w:fill')}`;
         break;
       case 'w:i':
         styles.fontStyle = 'italic';
@@ -36,7 +42,7 @@ function TextRun({ node }) {
   const children = childNodes.map((node, i) => (
     <OpenOfficeNode key={i} node={node} />
   ));
-  const styles = childNodes.filter(stylistic).reduce((styles, current) => {
+  const styles = childNodes.filter(isStylistic).reduce((styles, current) => {
     return {
       ...styles,
       ...extractStyles(current),
