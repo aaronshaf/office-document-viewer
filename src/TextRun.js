@@ -10,10 +10,21 @@ const extractStyles = (node) => {
       case 'w:sz':
         styles.fontSize = `${node.getAttribute('w:val')}pt`;
         break;
+      case 'w:b':
+        styles.fontWeight = 'bold';
+        break;
+      case 'w:i':
+        styles.fontStyle = 'italic';
+        break;
+      case 'w:u':
+        styles.textDecoration = 'underline';
+        break;
+      case 'bCs':
+      case 'iCs':
       case 'szCs':
         return;
       default:
-        console.warn(`Did not parse tag ${node.tagName}`);
+        console.warn(`Did not apply style ${node.tagName}`);
         return;
     }
   });
