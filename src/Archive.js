@@ -95,11 +95,6 @@ function Archive() {
       <div className="Document">{nodes}</div>
 
       <details>
-        <summary>test1.docx reference</summary>
-        <img src="https://i.imgur.com/5x1pL1l.png" alt="Reference" />
-      </details>
-
-      <details>
         <summary>Archive contents</summary>
         {entries.map((entry) => (
           <div key={entry.filename}>{entry.filename}</div>
