@@ -44,8 +44,12 @@ function Archive() {
   }, [entries]);
 
   useEffect(() => {
+    let file = new URLSearchParams(window.location.search).get('file');
+    if (file.indexOf('http') === 0) {
+      file = `https://cors-anywhere.herokuapp.com/${file}`;
+    }
     const [, getEntriesPromise] = getEntriesFromXHR(
-      '/test-documents/test1.docx'
+      file || '/test-documents/test1.docx'
     );
     getEntriesPromise.then((entries) => {
       setEntries(entries);
@@ -56,6 +60,31 @@ function Archive() {
       <h1>DOCX Viewer</h1>
       <div>
         <em>Dreaming big. Starting small.</em>
+        <ul>
+          <li>
+            <a href="/?file=/test-documents/test1.docx">test1.docx</a>
+          </li>
+          <li>
+            <a href="/?file=https://filesamples.com/samples/document/docx/sample1.docx">
+              https://filesamples.com/samples/document/docx/sample1.docx
+            </a>
+          </li>
+          <li>
+            <a href="/?file=https://filesamples.com/samples/document/docx/sample2.docx">
+              https://filesamples.com/samples/document/docx/sample2.docx
+            </a>
+          </li>
+          <li>
+            <a href="/?file=https://filesamples.com/samples/document/docx/sample3.docx">
+              https://filesamples.com/samples/document/docx/sample3.docx
+            </a>
+          </li>
+          <li>
+            <a href="/?file=https://filesamples.com/samples/document/docx/sample4.docx">
+              https://filesamples.com/samples/document/docx/sample4.docx
+            </a>
+          </li>
+        </ul>
       </div>
 
       <div className="Document">
@@ -68,7 +97,7 @@ function Archive() {
       </details>
 
       <details>
-        <summary>test1.docx contents</summary>
+        <summary>Archive contents</summary>
         {entries.map((entry) => (
           <div key={entry.filename}>{entry.filename}</div>
         ))}
