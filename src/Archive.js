@@ -64,7 +64,7 @@ function Archive() {
 
       <details>
         <summary>test1.docx reference</summary>
-        <img src="https://i.imgur.com/5x1pL1l.png" alt="Reference image" />
+        <img src="https://i.imgur.com/5x1pL1l.png" alt="Reference" />
       </details>
 
       <details>
