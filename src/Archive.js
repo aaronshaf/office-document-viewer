@@ -74,7 +74,7 @@ function Archive() {
       }
     }
     doAsyncStuff();
-  }, [entries, setRelationships]);
+  }, [entries, setRelationships, setEntryMap]);
 
   useEffect(() => {
     let file = new URLSearchParams(window.location.search).get('file') || '';
