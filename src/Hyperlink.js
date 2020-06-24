@@ -5,7 +5,7 @@ function Hyperlink({ node }) {
   const children = Array.from(node.childNodes).map((node, i) => (
     <OpenOfficeNode key={i} node={node} />
   ));
-  return <a href="#">{children}</a>;
+  return <a href="#wip">{children}</a>;
 }
 
 export default Hyperlink;
