@@ -1,6 +1,6 @@
 import React from 'react';
 import OpenOfficeNode from './OpenOfficeNode';
-import { extractStyles } from './oo_utils';
+import { extractStyles, inferTag } from './oo_utils';
 
 function Paragraph({ node }) {
   const id = node.getAttribute('w14:paraId');
@@ -21,11 +21,26 @@ function Paragraph({ node }) {
     };
   }, {});
 
-  return (
-    <p id={id} style={styles}>
-      {children}
-    </p>
-  );
+  const tag = inferTag(childNodes);
+  if (tag === 'h1') {
+    return (
+      <h1 id={id} style={styles}>
+        {children}
+      </h1>
+    );
+  } else if (tag === 'h2') {
+    return (
+      <h2 id={id} style={styles}>
+        {children}
+      </h2>
+    );
+  } else {
+    return (
+      <div id={id} style={styles}>
+        {children}
+      </div>
+    );
+  }
 }
 
 export default Paragraph;
