@@ -31,6 +31,7 @@ function Archive() {
         }
         if (xml != null) {
           const manifest = parseXml(xml);
+          window.test1 = manifest;
           const nodes = Array.prototype.slice.call(
             manifest.querySelectorAll('t')
           );
@@ -44,7 +45,7 @@ function Archive() {
   }, [entries]);
 
   useEffect(() => {
-    let file = new URLSearchParams(window.location.search).get('file');
+    let file = new URLSearchParams(window.location.search).get('file') || '';
     if (file.indexOf('http') === 0) {
       file = `https://cors-anywhere.herokuapp.com/${file}`;
     }
