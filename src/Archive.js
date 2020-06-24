@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getEntriesFromXHR, getTextFromEntry, parseXml } from './utils';
-import Paragraph from './Paragraph';
+import OpenOfficeNode from './OpenOfficeNode';
 import './Document.css';
 
 const MANIFEST_FILENAME = 'word/document.xml';
@@ -34,16 +34,10 @@ function Archive() {
           const doc = parseXml(xml);
           window.test1 = doc;
           const childNodes = Array.from(doc.querySelector('body').childNodes);
+
           let nodes = [];
           for (let childNode of childNodes) {
-            switch (childNode.tagName) {
-              case 'w:p':
-                nodes.push(<Paragraph key={nodes.length} node={childNode} />);
-                break;
-              default:
-                break;
-            }
-            console.log(childNode.tagName);
+            nodes.push(<OpenOfficeNode node={childNode} />);
           }
 
           setTextNodes(nodes);
