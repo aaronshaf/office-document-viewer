@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Archive from './Archive';
 
 function Dashboard() {
@@ -30,6 +30,11 @@ function Dashboard() {
           <ul>
             <li>
               <a href="/?file=/test-documents/test1.docx">test1.docx</a>
+            </li>
+            <li>
+              <a href="/?file=https://www.duxburysystems.com/documentation/dbt12.4/samples/word/english-en.docx">
+                english-en.docx
+              </a>
             </li>
             <li>
               <a href="/?file=https://filesamples.com/samples/document/docx/sample1.docx">

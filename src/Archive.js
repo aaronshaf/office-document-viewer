@@ -15,6 +15,11 @@ function Archive({ file }) {
   const [nodes, setTextNodes] = useState([]);
   const [, setRelationships] = useRecoilState(relationshipsState);
 
+  const normalizedFile =
+    file.indexOf('http') === 0
+      ? `https://cors-anywhere.herokuapp.com/${file}`
+      : '';
+
   useEffect(() => {
     const entryMap = new Map();
     for (let entry of entries) {
@@ -77,11 +82,8 @@ function Archive({ file }) {
   }, [entries, setRelationships, setEntryMap]);
 
   useEffect(() => {
-    if (file.indexOf('http') === 0) {
-      file = `https://cors-anywhere.herokuapp.com/${file}`;
-    }
     const [, getEntriesPromise] = getEntriesFromXHR(
-      file || '/test-documents/test1.docx'
+      normalizedFile || '/test-documents/test1.docx'
     );
     if (getEntriesPromise instanceof Promise) {
       getEntriesPromise.then((entries) => {
@@ -89,7 +91,7 @@ function Archive({ file }) {
         setEntries(entries);
       });
     }
-  }, []);
+  }, [normalizedFile]);
 
   return (
     <div className="Archive">
