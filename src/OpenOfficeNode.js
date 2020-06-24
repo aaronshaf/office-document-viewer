@@ -1,19 +1,24 @@
 import React from 'react';
+import Hyperlink from './Hyperlink';
 import Paragraph from './Paragraph';
+import TextRun from './TextRun';
 
 function OpenOfficeNode({ node }) {
   let nodes = [];
 
   switch (node.tagName) {
     case 'w:p':
-      nodes.push(<Paragraph key={nodes.length} node={node} />);
-      break;
+      return <Paragraph key={nodes.length} node={node} />;
+    case 'w:r':
+      return <TextRun key={nodes.length} node={node} />;
+    case 'w:hyperlink':
+      return <Hyperlink key={nodes.length} node={node} />;
+    case 'w:t':
+      return <>{node.textContent}</>;
     default:
-      break;
+      console.warn(`Did not parse tag ${node.tagName}`);
+      return <></>;
   }
-  // console.log(childNode.tagName);
-
-  return <>{nodes}</>;
 }
 
 export default OpenOfficeNode;

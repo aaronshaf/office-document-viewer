@@ -1,11 +1,11 @@
 import React from 'react';
 import OpenOfficeNode from './OpenOfficeNode';
 
-function TextRun({ node }) {
+function Hyperlink({ node }) {
   const children = Array.from(node.childNodes).map((node, i) => (
     <OpenOfficeNode key={i} node={node} />
   ));
-  return <span>{children}</span>;
+  return <a href="#">{children}</a>;
 }
 
-export default TextRun;
+export default Hyperlink;

@@ -1,9 +1,12 @@
 import React from 'react';
+import OpenOfficeNode from './OpenOfficeNode';
 
 function Paragraph({ node }) {
-  const nodes = Array.prototype.slice.call(node.querySelectorAll('t'));
   const id = node.getAttribute('w14:paraId');
-  return <p id={id}>{nodes.map((node) => node.textContent)}</p>;
+  const children = Array.from(node.childNodes).map((node, i) => (
+    <OpenOfficeNode key={i} node={node} />
+  ));
+  return <p id={id}>{children}</p>;
 }
 
 export default Paragraph;

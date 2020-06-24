@@ -17,7 +17,7 @@ function Archive() {
     }
     setEntryMap(entryMap);
     const manifestEntry = entries.find((entry) => {
-      console.log(entry.filename);
+      // console.log(entry.filename);
       return entry.filename === MANIFEST_FILENAME;
     });
     // console.log({ manifestEntry });
@@ -37,7 +37,7 @@ function Archive() {
 
           let nodes = [];
           for (let childNode of childNodes) {
-            nodes.push(<OpenOfficeNode node={childNode} />);
+            nodes.push(<OpenOfficeNode key={nodes.length} node={childNode} />);
           }
 
           setTextNodes(nodes);
