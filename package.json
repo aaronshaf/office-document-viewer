@@ -9,13 +9,16 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
-    "recoil": "^0.0.10"
+    "recoil": "^0.0.10",
+    "superstatic": "^6.0.4",
+    "testcafe": "^1.8.7"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "testcafe chrome ./tests/test.* --app \"node_modules/.bin/superstatic -p 5000 ./build -s\"",
+    "eject": "react-scripts eject",
+    "test-headless": "testcafe chrome:headless,firefox:headless ./tests/test.*  --page-load-timeout 10000 --assertion-timeout 10000 --app \"node_modules/.bin/superstatic -p 5000 ./build -s\""
   },
   "eslintConfig": {
     "extends": "react-app"
