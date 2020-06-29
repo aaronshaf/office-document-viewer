@@ -16,9 +16,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "testcafe chrome ./tests/test.* --app \"node_modules/.bin/superstatic -p 5000 ./build -s\"",
+    "test": "testcafe chrome ./tests/test.* -L",
     "eject": "react-scripts eject",
-    "test-headless": "testcafe chrome:headless,firefox:headless ./tests/test.*  --page-load-timeout 10000 --assertion-timeout 10000 --app \"node_modules/.bin/superstatic -p 5000 ./build -s\""
+    "test-headless": "testcafe chrome:headless,firefox:headless ./tests/test.*  --page-load-timeout 10000 --assertion-timeout 10000 --app \"node_modules/.bin/superstatic -p 3000 ./build -s\""
   },
   "eslintConfig": {
     "extends": "react-app"

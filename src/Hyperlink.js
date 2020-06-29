@@ -16,7 +16,7 @@ function Hyperlink({ node }) {
       href={relationships[relationshipId]?.getAttribute('Target') || '#_'}
       target={
         relationships[relationshipId]?.getAttribute('TargetMode') === 'External'
-          ? '_blank'
+          ? '_top'
           : ''
       }
     >
