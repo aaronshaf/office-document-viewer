@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import theme from '@instructure/ui-themes/lib/canvas';
-import highContrastTheme from '@instructure/ui-themes/lib/canvas/high-contrast';
+import theme from '@instructure/canvas-theme';
+import highContrastTheme from '@instructure/canvas-high-contrast-theme';
 import App from './App';
 import { RecoilRoot } from 'recoil';
 import * as serviceWorker from './serviceWorker';

@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Archive from './Archive';
-import FileDrop from '@instructure/ui-forms/lib/components/FileDrop';
-import Billboard from '@instructure/ui-billboard/lib/components/Billboard';
+import { FileDrop } from '@instructure/ui-file-drop';
+import { Billboard } from '@instructure/ui-billboard';
 import { IconDocumentLine } from '@instructure/ui-icons';
-import Flex, { FlexItem } from '@instructure/ui-layout/lib/components/Flex';
-import ScreenReaderContent from '@instructure/ui-a11y/lib/components/ScreenReaderContent';
-import TextInput from '@instructure/ui-forms/lib/components/TextInput';
-import Button from '@instructure/ui-buttons/lib/components/Button';
+import { Flex } from '@instructure/ui-flex';
+import { ScreenReaderContent } from '@instructure/ui-a11y-content';
+import { TextInput } from '@instructure/ui-text-input';
+import { Button } from '@instructure/ui-buttons';
 
 import './Dashboard.css';
 
@@ -47,7 +47,7 @@ function Dashboard() {
 
         <form method="get">
           <Flex justifyItems="center" margin="medium none large">
-            <FlexItem>
+            <Flex.Item>
               <TextInput
                 // inputRef={(input) => (this.inputRef = input)}
                 label={<ScreenReaderContent>Document</ScreenReaderContent>}
@@ -55,12 +55,12 @@ function Dashboard() {
                 placeholder={`https://www.yourdomain.com/document.docx (CORS enabled)`}
                 width="30rem"
               />
-            </FlexItem>
-            <FlexItem padding="0 0 0 x-small">
+            </Flex.Item>
+            <Flex.Item padding="0 0 0 x-small">
               <Button type="submit" variant="primary">
                 View
               </Button>
-            </FlexItem>
+            </Flex.Item>
           </Flex>
         </form>
 
