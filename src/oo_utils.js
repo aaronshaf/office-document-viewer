@@ -34,7 +34,7 @@ export const extractStyles = (node) => {
   Array.from(node.childNodes).forEach((node) => {
     switch (node.tagName) {
       case 'w:sz':
-        styles.fontSize = `${node.getAttribute('w:val')}px`;
+        styles.fontSize = `${parseInt(node.getAttribute('w:val'), 10) / 2}pt`;
         break;
       case 'w:b':
         styles.fontWeight = 'bold';
