@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import theme from '@instructure/canvas-theme';
 import highContrastTheme from '@instructure/canvas-high-contrast-theme';
@@ -21,7 +21,9 @@ if (highContrastEnabled) {
 ReactDOM.render(
   <React.StrictMode>
     <RecoilRoot>
-      <App />
+      <Suspense fallback={<div></div>}>
+        <App />
+      </Suspense>
     </RecoilRoot>
   </React.StrictMode>,
   document.getElementById('root')
