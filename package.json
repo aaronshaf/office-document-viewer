@@ -15,6 +15,7 @@
     "@instructure/ui-pagination": "7.1.0",
     "@instructure/ui-text-input": "^7.1.0",
     "@instructure/ui-themes": "7.1.0",
+    "@instructure/ui-view": "^7.1.0",
     "@testing-library/jest-dom": "5.11.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
