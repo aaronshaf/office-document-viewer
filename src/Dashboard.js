@@ -119,7 +119,7 @@ function Dashboard() {
         </div>
 
         <a
-          href="https://github.com/aaronshaf/docx-viewer"
+          href="https://github.com/aaronshaf/office-document-viewer"
           className="github-corner"
           aria-label="View source on GitHub"
         >
