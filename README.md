@@ -1,7 +1,5 @@
 DOCX web viewer.
 
-Dreaming big. Starting small.
-
 [Examples](https://docx-viewer.netlify.app/)
 
 ## See also

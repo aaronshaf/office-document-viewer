@@ -1,6 +1,6 @@
 {
-  "short_name": "DOCX Viewer",
-  "name": "DOCX Viewer",
+  "short_name": "Office Document Viewer",
+  "name": "Office Document Viewer",
   "icons": [
     {
       "src": "favicon.ico",

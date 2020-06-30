@@ -1,29 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Archive from './Archive';
+import FileDrop from '@instructure/ui-forms/lib/components/FileDrop';
+import Billboard from '@instructure/ui-billboard/lib/components/Billboard';
+import { IconDocumentLine } from '@instructure/ui-icons';
+import Flex, { FlexItem } from '@instructure/ui-layout/lib/components/Flex';
+import ScreenReaderContent from '@instructure/ui-a11y/lib/components/ScreenReaderContent';
+import TextInput from '@instructure/ui-forms/lib/components/TextInput';
+import Button from '@instructure/ui-buttons/lib/components/Button';
+
+import './Dashboard.css';
 
 function Dashboard() {
-  const file = new URLSearchParams(window.location.search).get('file') || '';
+  const fileSrc = new URLSearchParams(window.location.search).get('file') || '';
+  // const [file, setFile] = useState(null);
+  const [droppedFile, setDroppedFile] = useState(null);
 
-  if (file) {
-    return <Archive file={file} />;
+  function onDropAccepted(files) {
+    if (files) {
+      setDroppedFile(files[0]);
+    }
+  }
+
+  if (droppedFile) {
+    return <Archive droppedFile={droppedFile} />;
+  } else if (fileSrc) {
+    return <Archive file={fileSrc} />;
   } else {
     return (
-      <div>
-        <h1>DOCX Viewer</h1>
+      <div className={'Dashboard'}>
+        {/* <h1>Office Document Viewer</h1> */}
 
-        <div style={{ marginBottom: '1em' }}>
-          <em>Dreaming big. Starting small.</em>
-        </div>
+        <FileDrop
+          accept={['.docx']}
+          onDropAccepted={onDropAccepted}
+          onDropRejected={(file) => {
+            console.error('file rejected');
+          }}
+          label={
+            <Billboard
+              heading={`Office Document Viewer`}
+              message={`Drag and drop the file, or click to browse your computer.`}
+              hero={<IconDocumentLine />}
+            />
+          }
+        />
 
-        <div style={{ marginBottom: '1em' }}>
-          <h2>Load document</h2>
-          <form method="get">
-            <input name="file" placeholder="URL" type="url" />
-            <button type="submit" style={{ marginLeft: '3px' }}>
-              Load
-            </button>
-          </form>
-        </div>
+        <form method="get">
+          <Flex justifyItems="center" margin="medium none large">
+            <FlexItem>
+              <TextInput
+                // inputRef={(input) => (this.inputRef = input)}
+                label={<ScreenReaderContent>Document</ScreenReaderContent>}
+                name="file"
+                placeholder={`https://www.yourdomain.com/document.docx (CORS enabled)`}
+                width="30rem"
+              />
+            </FlexItem>
+            <FlexItem padding="0 0 0 x-small">
+              <Button type="submit" variant="primary">
+                View
+              </Button>
+            </FlexItem>
+          </Flex>
+        </form>
 
         <div style={{ marginBottom: '1em' }}>
           <h2>Example documents</h2>
