@@ -8,7 +8,6 @@
   max-width: 860px;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 24px;
-  margin-bottom: 24px;
-  box-shadow: 2px 2px 5px #ddd;
+  box-shadow: 0px 0px 8px #ddd;
+  border: 1px solid #c6c6c6;
 }

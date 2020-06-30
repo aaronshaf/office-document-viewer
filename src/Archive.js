@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { getEntriesFromXHR, getTextFromEntry, parseXml } from './utils';
+import {
+  getEntriesFromBlob,
+  getEntriesFromXHR,
+  getTextFromEntry,
+  parseXml,
+} from './utils';
 import OpenOfficeNode from './OpenOfficeNode';
 import { relationshipsState, entryMapState } from './atoms';
 import { useRecoilState } from 'recoil';
+import './Archive.css';
 import './Document.css';
 
 const DOCUMENT_FILENAME = 'word/document.xml';
 const RELATIONSHIPS_FILENAME = 'word/_rels/document.xml.rels';
 
-function Archive({ file }) {
-  const [isLoading, setIsLoading] = useState(true);
+function Archive({ file = null, droppedFile = null }) {
+  const [, setIsLoading] = useState(true);
   const [entries, setEntries] = useState([]);
   const [, setEntryMap] = useRecoilState(entryMapState);
   const [nodes, setTextNodes] = useState([]);
   const [, setRelationships] = useRecoilState(relationshipsState);
-
-  const normalizedFile =
-    file.indexOf('http') === 0
-      ? `https://cors-anywhere.herokuapp.com/${file}`
-      : '';
 
   useEffect(() => {
     const entryMap = new Map();
@@ -82,33 +83,41 @@ function Archive({ file }) {
   }, [entries, setRelationships, setEntryMap]);
 
   useEffect(() => {
-    const [, getEntriesPromise] = getEntriesFromXHR(
-      normalizedFile || '/test-documents/test1.docx'
-    );
-    if (getEntriesPromise instanceof Promise) {
-      getEntriesPromise.then((entries) => {
+    if (droppedFile) {
+      getEntriesFromBlob(droppedFile).then((entries) => {
         setIsLoading(false);
         setEntries(entries);
       });
+    } else if (file) {
+      const normalizedFile =
+        file?.indexOf('http') === 0
+          ? `https://cors-anywhere.herokuapp.com/${file}`
+          : '';
+
+      const [, getEntriesPromise] = getEntriesFromXHR(
+        normalizedFile || '/test-documents/test1.docx'
+      );
+      if (getEntriesPromise instanceof Promise) {
+        getEntriesPromise.then((entries) => {
+          setIsLoading(false);
+          setEntries(entries);
+        });
+      }
     }
-  }, [normalizedFile]);
+  }, [file, droppedFile]);
 
   return (
     <div className="Archive">
-      <div>
-        <a href="/">← Dashboard</a>
-      </div>
-
       <div className="Document">{nodes}</div>
 
-      {isLoading === false && (
+      {/* {isLoading === false && (
         <details>
           <summary>Archive contents</summary>
           {entries.map((entry) => (
             <div key={entry.filename}>{entry.filename}</div>
           ))}
         </details>
-      )}
+      )} */}
     </div>
   );
 }

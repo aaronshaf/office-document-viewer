@@ -1,10 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import theme from '@instructure/ui-themes/lib/canvas';
+import highContrastTheme from '@instructure/ui-themes/lib/canvas/high-contrast';
 import App from './App';
 import { RecoilRoot } from 'recoil';
 import * as serviceWorker from './serviceWorker';
 import './reset.css';
 import './index.css';
+
+// TODO
+const highContrastEnabled = false;
+
+if (highContrastEnabled) {
+  highContrastTheme.use();
+  // import('./high-contrast.css');
+} else {
+  theme.use();
+}
 
 ReactDOM.render(
   <React.StrictMode>
