@@ -13,7 +13,7 @@ import './Archive.css';
 import './Document.css';
 
 const DOCUMENT_FILENAME = 'word/document.xml';
-const STYLES_FILENAME = 'word/styles.xml';
+// const STYLES_FILENAME = 'word/styles.xml';
 const RELATIONSHIPS_FILENAME = 'word/_rels/document.xml.rels';
 
 function Archive({ file = null, droppedFile = null }) {
@@ -97,7 +97,7 @@ function Archive({ file = null, droppedFile = null }) {
       }
     }
     doAsyncStuff();
-  }, [entries, setRelationships, setEntryMap]);
+  }, [entries, setRelationships, setEntryMap, setStylesState]);
 
   useEffect(() => {
     if (droppedFile) {
