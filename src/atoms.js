@@ -12,10 +12,10 @@ export const relationshipsState = atom({
 
 export const entryMapState = atom({
   key: 'entryMap',
-  default: new Map(),
+  default: {},
 });
 
 export const stylesState = atom({
   key: 'stylesMap',
-  default: new Map(),
+  default: {},
 });

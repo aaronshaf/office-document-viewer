@@ -1,8 +1,14 @@
 import React from 'react';
 import OpenOfficeNode from './OpenOfficeNode';
 import { extractStyles, inferTag } from './oo_utils';
+import { stylesState } from './atoms';
+import { useRecoilState } from 'recoil';
 
 function Paragraph({ node }) {
+  const [styleMap] = useRecoilState(stylesState);
+
+  const styleValue = node.querySelector('pStyle')?.getAttribute('w:val');
+
   const id = node.getAttribute('w14:paraId');
   const childNodes = Array.from(node.childNodes);
 
@@ -12,9 +18,13 @@ function Paragraph({ node }) {
     <br />
   );
 
-  const isStylistic = (node) => ['w:pPr'].includes(node.tagName);
+  const isStylistic = (node) => ['w:pPr', 'w:rPr'].includes(node.tagName);
 
-  const styles = childNodes.filter(isStylistic).reduce((styles, current) => {
+  const accChildNodes = childNodes.concat(
+    Array.from(styleMap[styleValue]?.childNodes || [])
+  );
+
+  const styles = accChildNodes.filter(isStylistic).reduce((styles, current) => {
     return {
       ...styles,
       ...extractStyles(current),

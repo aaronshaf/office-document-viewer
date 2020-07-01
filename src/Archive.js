@@ -48,20 +48,24 @@ function Archive({ file = null, droppedFile = null }) {
         let stylesXml;
         try {
           stylesXml = await getTextFromEntry(stylesEntry);
-        } catch (error) {
-          // this.setState({ errorLoading: true });
-        }
-        setStylesState(stylesXml);
+        } catch (error) {}
+        const s_doc = parseXml(stylesXml);
+        const s = Array.from(s_doc.querySelectorAll('style'));
+        setStylesState(
+          s.reduce((map, current) => {
+            return {
+              ...map,
+              [current.getAttribute('w:styleId')]: current,
+            };
+          }, {})
+        );
       }
 
       if (relationshipsEntry != null) {
         let relationshipsXml;
         try {
           relationshipsXml = await getTextFromEntry(relationshipsEntry);
-        } catch (error) {
-          // this.setState({ errorLoading: true });
-        }
-        setRelationships(relationshipsXml);
+        } catch (error) {}
 
         if (relationshipsXml != null) {
           const r_doc = parseXml(relationshipsXml);
