@@ -64,4 +64,24 @@ test('test1.docx', async (t) => {
   // Image
   node = Selector('img').withAttribute('alt', 'No description');
   await t.expect(node.exists).ok('image');
+
+  // Center-aligned text
+  node = Selector('div')
+    .withAttribute('style', 'text-align: center;')
+    .withExactText('This text is center-aligned.');
+  await t.expect(node.exists).ok('center-aligned text');
+
+  // Right-aligned text
+  node = Selector('div')
+    .withAttribute('style', 'text-align: right;')
+    .withExactText('This text is right-aligned.');
+  await t.expect(node.exists).ok('right-aligned text');
+
+  // Justified ("both") text
+  node = Selector('div')
+    .withAttribute('style', 'text-align: justify;')
+    .withExactText(
+      'This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified.'
+    );
+  await t.expect(node.exists).ok('Justified text');
 });

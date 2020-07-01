@@ -33,6 +33,10 @@ export const extractStyles = (node) => {
   const styles = {};
   Array.from(node.childNodes).forEach((node) => {
     switch (node.tagName) {
+      case 'w:jc':
+        const val = node.getAttribute('w:val');
+        styles.textAlign = val === 'both' ? 'justify' : val;
+        break;
       case 'w:sz':
         styles.fontSize = `${parseInt(node.getAttribute('w:val'), 10) / 2}pt`;
         break;

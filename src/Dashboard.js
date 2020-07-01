@@ -95,6 +95,11 @@ function Dashboard({ setDroppedFile }) {
                 resume_009.docx
               </a>
             </li>
+            <li>
+              <a href="/?file=https://file-examples.com/wp-content/uploads/2017/02/file-sample_1MB.docx">
+                file-sample_1MB.docx
+              </a>
+            </li>
             {/* <li>
               <a href="/?file=https://www.coolfreecv.com/doc/resume_010.docx">
                 resume_010.docx

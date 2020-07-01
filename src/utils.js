@@ -26,7 +26,11 @@ export async function getBlobFromEntry(entry) {
     console.warn('entry is missing');
   }
   return new Promise((resolve, reject) => {
-    entry.getData(new zip.BlobWriter(), resolve);
+    try {
+      entry.getData(new zip.BlobWriter(), resolve);
+    } catch (error) {
+      reject();
+    }
   });
 }
 
