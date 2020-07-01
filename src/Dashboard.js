@@ -9,6 +9,8 @@ import { Button } from '@instructure/ui-buttons';
 import { Heading } from '@instructure/ui-heading';
 import { View } from '@instructure/ui-view';
 
+import './Document.css';
+
 function Dashboard({ setDroppedFile }) {
   function onDropAccepted(files) {
     if (files) {
@@ -21,7 +23,7 @@ function Dashboard({ setDroppedFile }) {
       <View as="div" margin="large">
         {/* <h1>Office Document Viewer</h1> */}
 
-        <View as="div" margin="large">
+        <div className="Document">
           <FileDrop
             accept={['.docx']}
             onDropAccepted={onDropAccepted}
@@ -36,28 +38,28 @@ function Dashboard({ setDroppedFile }) {
               />
             }
           />
-        </View>
 
-        <form method="get">
-          <Flex justifyItems="center" margin="medium none large">
-            <Flex.Item>
-              <TextInput
-                // inputRef={(input) => (this.inputRef = input)}
-                label={<ScreenReaderContent>Document</ScreenReaderContent>}
-                name="file"
-                placeholder={`https://www.yourdomain.com/document.docx (CORS enabled)`}
-                width="30rem"
-              />
-            </Flex.Item>
-            <Flex.Item padding="0 0 0 x-small">
-              <Button type="submit" variant="primary">
-                View
-              </Button>
-            </Flex.Item>
-          </Flex>
-        </form>
+          <form method="get">
+            <Flex justifyItems="center" margin="medium none none">
+              <Flex.Item>
+                <TextInput
+                  // inputRef={(input) => (this.inputRef = input)}
+                  label={<ScreenReaderContent>Document</ScreenReaderContent>}
+                  name="file"
+                  placeholder={`.docx URL (CORS enabled)`}
+                  width="20rem"
+                />
+              </Flex.Item>
+              <Flex.Item padding="0 0 0 x-small">
+                <Button type="submit" variant="primary">
+                  View
+                </Button>
+              </Flex.Item>
+            </Flex>
+          </form>
+        </div>
 
-        <div style={{ marginBottom: '1em' }}>
+        <div className="Document">
           <Heading level="h2">Example documents</Heading>
           <ul>
             <li>
@@ -101,7 +103,7 @@ function Dashboard({ setDroppedFile }) {
           </ul>
         </div>
 
-        <div style={{ marginBottom: '1em' }}>
+        <div className="Document">
           <Heading level="h2">Next up</Heading>
           <ul>
             <li>Pagination</li>

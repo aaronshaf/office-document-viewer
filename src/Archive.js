@@ -6,12 +6,13 @@ import {
   parseXml,
 } from './utils';
 import OpenOfficeNode from './OpenOfficeNode';
-import { relationshipsState, entryMapState } from './atoms';
+import { relationshipsState, entryMapState, stylesState } from './atoms';
 import { useRecoilState } from 'recoil';
 import './Archive.css';
 import './Document.css';
 
 const DOCUMENT_FILENAME = 'word/document.xml';
+const STYLES_FILENAME = 'word/styles.xml';
 const RELATIONSHIPS_FILENAME = 'word/_rels/document.xml.rels';
 
 function Archive({ file = null, droppedFile = null }) {
@@ -20,6 +21,7 @@ function Archive({ file = null, droppedFile = null }) {
   const [, setEntryMap] = useRecoilState(entryMapState);
   const [nodes, setTextNodes] = useState([]);
   const [, setRelationships] = useRecoilState(relationshipsState);
+  const [, setStylesState] = useRecoilState(stylesState);
 
   useEffect(() => {
     const entryMap = new Map();
@@ -32,11 +34,24 @@ function Archive({ file = null, droppedFile = null }) {
       (entry) => entry.filename === RELATIONSHIPS_FILENAME
     );
 
+    // const stylesEntry = entries.find(
+    //   (entry) => entry.filename === STYLES_FILENAME
+    // );
+
     const manifestEntry = entries.find((entry) => {
       return entry.filename === DOCUMENT_FILENAME;
     });
 
     async function doAsyncStuff() {
+      // if (stylesEntry) {
+      //   let stylesXml;
+      //   try {
+      //     stylesXml = await getTextFromEntry(stylesEntry);
+      //   } catch (error) {
+      //     // this.setState({ errorLoading: true });
+      //   }
+      // }
+
       if (relationshipsEntry != null) {
         let r_xml;
         try {
@@ -44,6 +59,7 @@ function Archive({ file = null, droppedFile = null }) {
         } catch (error) {
           // this.setState({ errorLoading: true });
         }
+        setStylesState(r_xml);
 
         if (r_xml != null) {
           const r_doc = parseXml(r_xml);

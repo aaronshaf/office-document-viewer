@@ -14,3 +14,8 @@ export const entryMapState = atom({
   key: 'entryMap',
   default: new Map(),
 });
+
+export const stylesState = atom({
+  key: 'stylesMap',
+  default: new Map(),
+});
