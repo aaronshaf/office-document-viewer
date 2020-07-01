@@ -126,11 +126,13 @@ function Archive({ file = null, droppedFile = null }) {
   return (
     <div className="Archive">
       {isLoading && (
-        <div className="loading">
+        <div className="delayed-appearance loading">
           <Spinner renderTitle="Loading" size="x-small" variant="inverse" />
         </div>
       )}
-      {isLoading === false && nodes && <div className="Document">{nodes}</div>}
+      {isLoading === false && nodes.length > 0 && (
+        <div className="Document">{nodes}</div>
+      )}
     </div>
   );
 }
