@@ -13,7 +13,7 @@ import './Archive.css';
 import './Document.css';
 
 const DOCUMENT_FILENAME = 'word/document.xml';
-// const STYLES_FILENAME = 'word/styles.xml';
+const STYLES_FILENAME = 'word/styles.xml';
 const RELATIONSHIPS_FILENAME = 'word/_rels/document.xml.rels';
 
 function Archive({ file = null, droppedFile = null }) {
@@ -35,35 +35,36 @@ function Archive({ file = null, droppedFile = null }) {
       (entry) => entry.filename === RELATIONSHIPS_FILENAME
     );
 
-    // const stylesEntry = entries.find(
-    //   (entry) => entry.filename === STYLES_FILENAME
-    // );
+    const stylesEntry = entries.find(
+      (entry) => entry.filename === STYLES_FILENAME
+    );
 
     const manifestEntry = entries.find((entry) => {
       return entry.filename === DOCUMENT_FILENAME;
     });
 
     async function doAsyncStuff() {
-      // if (stylesEntry) {
-      //   let stylesXml;
-      //   try {
-      //     stylesXml = await getTextFromEntry(stylesEntry);
-      //   } catch (error) {
-      //     // this.setState({ errorLoading: true });
-      //   }
-      // }
-
-      if (relationshipsEntry != null) {
-        let r_xml;
+      if (stylesEntry) {
+        let stylesXml;
         try {
-          r_xml = await getTextFromEntry(relationshipsEntry);
+          stylesXml = await getTextFromEntry(stylesEntry);
         } catch (error) {
           // this.setState({ errorLoading: true });
         }
-        setStylesState(r_xml);
+        setStylesState(stylesXml);
+      }
 
-        if (r_xml != null) {
-          const r_doc = parseXml(r_xml);
+      if (relationshipsEntry != null) {
+        let relationshipsXml;
+        try {
+          relationshipsXml = await getTextFromEntry(relationshipsEntry);
+        } catch (error) {
+          // this.setState({ errorLoading: true });
+        }
+        setRelationships(relationshipsXml);
+
+        if (relationshipsXml != null) {
+          const r_doc = parseXml(relationshipsXml);
           const r = Array.from(r_doc.querySelectorAll('Relationship'));
           setRelationships(
             r.reduce((map, current) => {
