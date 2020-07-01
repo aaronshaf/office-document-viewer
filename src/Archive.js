@@ -90,7 +90,7 @@ function Archive({ file = null, droppedFile = null }) {
         }
         if (xml != null) {
           const doc = parseXml(xml);
-          const childNodes = Array.from(doc.querySelector('body').childNodes);
+          const childNodes = Array.from(doc.querySelector('body').children);
 
           let nodes = [];
           for (let childNode of childNodes) {

@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 function Hyperlink({ node }) {
   const relationships = useRecoilValue(relationshipsState);
 
-  const children = Array.from(node.childNodes).map((node, i) => (
+  const children = Array.from(node.children).map((node, i) => (
     <OpenOfficeNode key={i} node={node} />
   ));
 

@@ -77,11 +77,11 @@ test('test1.docx', async (t) => {
     .withExactText('This text is right-aligned.');
   await t.expect(node.exists).ok('right-aligned text');
 
-  // Justified ("both") text
+  // Stretched ("both") text
   node = Selector('div')
     .withAttribute('style', 'text-align: justify;')
     .withExactText(
-      'This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified. This text is justified.'
+      'This text is stretched. This text is stretched. This text is stretched. This text is stretched. This text is stretched. This text is stretched. This text is stretched. This text is stretched. This text is stretched. This text is stretched.'
     );
-  await t.expect(node.exists).ok('Justified text');
+  await t.expect(node.exists).ok('Stretched text');
 });

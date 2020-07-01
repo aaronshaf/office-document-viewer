@@ -1,9 +1,9 @@
 import React from 'react';
 import OpenOfficeNode from './OpenOfficeNode';
-import { extractStyles } from './oo_utils';
+import { extractStyles } from './oo_utils2';
 
 function TextRun({ node }) {
-  const childNodes = Array.from(node.childNodes);
+  const childNodes = Array.from(node.children);
   const children = childNodes.map((node, i) => (
     <OpenOfficeNode key={i} node={node} />
   ));
