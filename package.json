@@ -13,6 +13,7 @@
     "@instructure/ui-forms": "6.27.0",
     "@instructure/ui-icons": "7.1.0",
     "@instructure/ui-pagination": "7.1.0",
+    "@instructure/ui-spinner": "^7.1.0",
     "@instructure/ui-text-input": "^7.1.0",
     "@instructure/ui-themes": "7.1.0",
     "@instructure/ui-view": "^7.1.0",

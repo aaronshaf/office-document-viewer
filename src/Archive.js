@@ -8,6 +8,7 @@ import {
 import OpenOfficeNode from './OpenOfficeNode';
 import { relationshipsState, entryMapState, stylesState } from './atoms';
 import { useRecoilState } from 'recoil';
+import { Spinner } from '@instructure/ui-spinner';
 import './Archive.css';
 import './Document.css';
 
@@ -16,7 +17,7 @@ const STYLES_FILENAME = 'word/styles.xml';
 const RELATIONSHIPS_FILENAME = 'word/_rels/document.xml.rels';
 
 function Archive({ file = null, droppedFile = null }) {
-  const [, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const [entries, setEntries] = useState([]);
   const [, setEntryMap] = useRecoilState(entryMapState);
   const [nodes, setTextNodes] = useState([]);
@@ -124,16 +125,12 @@ function Archive({ file = null, droppedFile = null }) {
 
   return (
     <div className="Archive">
-      <div className="Document">{nodes}</div>
-
-      {/* {isLoading === false && (
-        <details>
-          <summary>Archive contents</summary>
-          {entries.map((entry) => (
-            <div key={entry.filename}>{entry.filename}</div>
-          ))}
-        </details>
-      )} */}
+      {isLoading && (
+        <div className="loading">
+          <Spinner renderTitle="Loading" size="x-small" variant="inverse" />
+        </div>
+      )}
+      {isLoading === false && nodes && <div className="Document">{nodes}</div>}
     </div>
   );
 }

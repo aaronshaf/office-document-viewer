@@ -2039,6 +2039,23 @@
     classnames "^2"
     prop-types "^15"
 
+"@instructure/ui-spinner@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@instructure/ui-spinner/-/ui-spinner-7.1.0.tgz#89bd9f04e0cc33c164f03bd3cb3206422526b8a2"
+  integrity sha512-vALApP4FGMIIiGs32mB+nlRHaq2Jhni6bH3G7UubQZupZeGcslJ85N1G3X2CfktOaXohS8jIOejGlGHYmJZeog==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+    "@instructure/console" "^7.1.0"
+    "@instructure/ui-color-utils" "^7.1.0"
+    "@instructure/ui-react-utils" "^7.1.0"
+    "@instructure/ui-testable" "^7.1.0"
+    "@instructure/ui-themeable" "^7.1.0"
+    "@instructure/ui-utils" "^7.1.0"
+    "@instructure/ui-view" "^7.1.0"
+    "@instructure/uid" "^7.1.0"
+    classnames "^2"
+    prop-types "^15"
+
 "@instructure/ui-stylesheet@^6.27.0":
   version "6.27.0"
   resolved "https://registry.yarnpkg.com/@instructure/ui-stylesheet/-/ui-stylesheet-6.27.0.tgz#6162d20e8a61d3bfcbc93372d8acb0a6d8c3824b"
