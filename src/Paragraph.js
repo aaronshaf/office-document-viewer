@@ -21,8 +21,8 @@ function Paragraph({ node }) {
 
   const isStylistic = (node) => ['w:pPr', 'w:rPr'].includes(node.tagName);
 
-  const accChildNodes = childNodes.concat(
-    Array.from(styleMap[styleValue]?.children || [])
+  const accChildNodes = Array.from(styleMap[styleValue]?.children || []).concat(
+    childNodes
   );
 
   const styles = accChildNodes.filter(isStylistic).reduce((styles, current) => {

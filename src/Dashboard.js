@@ -111,10 +111,11 @@ function Dashboard({ setDroppedFile }) {
         <div className="Document">
           <Heading level="h2">Next up</Heading>
           <ul>
+            <li>Fonts</li>
+            <li>Tables</li>
             <li>Pagination</li>
             <li>Borders</li>
-            <li>Fonts</li>
-            <li>Text alignment</li>
+            <li>List item spacing</li>
           </ul>
         </div>
 

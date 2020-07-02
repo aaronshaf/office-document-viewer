@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
 const Dashboard = React.lazy(() => import('./Dashboard.js'));
-const Archive = React.lazy(() => import('./Archive.js'));
+const Archive = React.lazy(() => import('./Document.js'));
 
 function App() {
   const fileSrc = new URLSearchParams(window.location.search).get('file') || '';

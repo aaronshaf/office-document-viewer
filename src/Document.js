@@ -43,12 +43,14 @@ function Archive({ file = null, droppedFile = null }) {
       return entry.filename === DOCUMENT_FILENAME;
     });
 
-    async function doAsyncStuff() {
-      if (stylesEntry) {
-        let stylesXml;
-        try {
-          stylesXml = await getTextFromEntry(stylesEntry);
-        } catch (error) {}
+    async function loadXML() {
+      const [stylesXml, relationshipsXml, manifestXml] = await Promise.all([
+        stylesEntry && (await getTextFromEntry(stylesEntry)),
+        relationshipsEntry && (await getTextFromEntry(relationshipsEntry)),
+        manifestEntry && (await getTextFromEntry(manifestEntry)),
+      ]);
+
+      if (stylesXml) {
         const s_doc = parseXml(stylesXml);
         const s = Array.from(s_doc.querySelectorAll('style'));
         setStylesState(
@@ -61,47 +63,32 @@ function Archive({ file = null, droppedFile = null }) {
         );
       }
 
-      if (relationshipsEntry != null) {
-        let relationshipsXml;
-        try {
-          relationshipsXml = await getTextFromEntry(relationshipsEntry);
-        } catch (error) {}
-
-        if (relationshipsXml != null) {
-          const r_doc = parseXml(relationshipsXml);
-          const r = Array.from(r_doc.querySelectorAll('Relationship'));
-          setRelationships(
-            r.reduce((map, current) => {
-              return {
-                ...map,
-                [current.getAttribute('Id')]: current,
-              };
-            }, {})
-          );
-        }
+      if (relationshipsXml != null) {
+        const r_doc = parseXml(relationshipsXml);
+        const r = Array.from(r_doc.querySelectorAll('Relationship'));
+        setRelationships(
+          r.reduce((map, current) => {
+            return {
+              ...map,
+              [current.getAttribute('Id')]: current,
+            };
+          }, {})
+        );
       }
 
-      if (manifestEntry != null) {
-        let xml;
-        try {
-          xml = await getTextFromEntry(manifestEntry);
-        } catch (error) {
-          // this.setState({ errorLoading: true });
-        }
-        if (xml != null) {
-          const doc = parseXml(xml);
-          const childNodes = Array.from(doc.querySelector('body').children);
+      if (manifestXml != null) {
+        const doc = parseXml(manifestXml);
+        const childNodes = Array.from(doc.querySelector('body').children);
 
-          let nodes = [];
-          for (let childNode of childNodes) {
-            nodes.push(<OpenOfficeNode key={nodes.length} node={childNode} />);
-          }
-
-          setTextNodes(nodes);
+        let nodes = [];
+        for (let childNode of childNodes) {
+          nodes.push(<OpenOfficeNode key={nodes.length} node={childNode} />);
         }
+
+        setTextNodes(nodes);
       }
     }
-    doAsyncStuff();
+    loadXML();
   }, [entries, setRelationships, setEntryMap, setStylesState]);
 
   useEffect(() => {
